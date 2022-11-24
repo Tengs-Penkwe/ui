@@ -85,7 +85,7 @@ local function add_fileInfo(name, bufnr)
     end
 
     -- padding around bufname; 24 = bufame length (icon + filename)
-    local padding = (24 - #name - 5) / 2
+    local padding = (10 - #name - 5) / 2
 
     icon = (
       api.nvim_get_current_buf() == bufnr and new_hl(icon_hl, "TbLineBufOn") .. " " .. icon
@@ -173,14 +173,14 @@ M.bufferlist = function()
   vim.g.bufirst = 0
   for _, bufnr in ipairs(vim.t.bufs) do
     if isBufValid(bufnr) then
-      --if ((#buffers + 1) * 21) > available_space then
+      if ((#buffers + 1) * 21) > available_space then
         if has_current then
           break
         end
 
         vim.g.bufirst = vim.g.bufirst + 1
         table.remove(buffers, 1)
-      --end
+      end
 
       has_current = (bufnr == current_buf and true) or has_current
       table.insert(buffers, styleBufferTab(bufnr))
