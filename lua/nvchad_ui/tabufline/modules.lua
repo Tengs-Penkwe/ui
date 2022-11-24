@@ -73,10 +73,6 @@ end
 
 local function getBtnsWidth() -- close, theme toggle btn etc
   local width = 2
-  if fn.tabpagenr "$" ~= 1 then
-    width = width + ((3 * fn.tabpagenr "$") + 2) + 10
-    width = not vim.g.TbTabsToggled and 8 or width
-  end
   return width
 end
 
